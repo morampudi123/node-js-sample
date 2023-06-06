@@ -13,6 +13,12 @@ pipeline {
                  sh "npm run"
                }
            }
-        }
-    }       
- 
+        stage('sonarqube'){
+           steps{
+                 sh "npm install sonar-scanner"
+                 sh "npm run sonar"
+               }
+            }
+       }       
+    } 
+
