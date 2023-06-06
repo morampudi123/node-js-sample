@@ -14,12 +14,7 @@ pipeline {
                }
            }
         stage('SonarQube') {
-                  environment {
-                    scannerHome = tool 'SonarQubeScanner'
-                  }
-                steps {
-                       withSonarQubeEnv('SonarQubeScanner') {
-                       sh "${scannerHome}/bin/sonar-scanner"
+                 steps {
                        sh '''sonar-scanner \
                        -Dsonar.projectKey=nodejs \
                        -Dsonar.sources=. \
@@ -29,7 +24,5 @@ pipeline {
                     }
                 }
             }
-        }
+        
                 
-
-
