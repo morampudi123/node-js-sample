@@ -28,26 +28,16 @@ pipeline {
 
           }
 
-        stage('SonarQube') {
-
-                  environment {
-
-                    scannerHome = tool 'SonarQubeScanner'
-
+        stage("SonarQube analysis") {
+           steps {
+            script {
+                def scannerHome = tool 'SonarQube Scanner';
+                withSonarQubeEnv('SonarQube Server') {
+                    sh 'npm package sonar:sonar'
+                   }
                 }
-
-                steps {
-
-                  withSonarQubeEnv('SonarQubeScanner') {
-
-                    sh "${scannerHome}/bin/sonar-scanner"
-
-                }
-
             }
-
-        }
+       }
 
     }
-
 }
