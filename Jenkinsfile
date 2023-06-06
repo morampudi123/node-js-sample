@@ -6,16 +6,13 @@ pipeline {
                 git credentialsId: 'git', url: 'https://github.com/morampudi123/node-js-sample.git'
             }
         }
-        stage('sonarqube analysis'){
+        stage('Build'){
            steps{
-           nodejs(nodeJSInstallationName: 'nodejs'){
-               sh "npm install"
-               withSonarQubeEnv('sonar'){
-                   sh "npm install sonar-scanner"
-                   sh "npm run sonar"
+                 sh "npm install"
+                 sh "npm test"
+                 sh "npm run"
                }
            }
         }
-    }
-}
-}
+    }       
+ 
